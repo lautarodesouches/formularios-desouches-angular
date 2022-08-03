@@ -1,0 +1,33 @@
+<form [formGroup]="mainForm" (ngSubmit)="sumbitMainForm()" class='bg-light p-4 rounded'>
+  <div class="mb-3">
+    <label for="name" class="form-label">Nombre</label>
+    <input type="text" class="form-control" id="name" aria-describedby="name" formControlName='name'>
+    <p class='pt-3 text-danger' *ngIf="mainForm.get('name')?.touched && mainForm.get('name')?.errors?.['pattern']">*El
+      nombre debe
+      contener solo letras y tener entre
+      3 y 15 caracteres</p>
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" class="form-control" id="email" aria-describedby="email" formControlName='email'>
+    <p class='pt-3 text-danger' *ngIf="mainForm.get('email')?.touched && mainForm.get('email')?.errors?.['required']">
+      *El email es
+      requerido</p>
+    <p class='pt-3 text-danger' *ngIf="mainForm.get('email')?.touched && mainForm.get('email')?.errors?.['email']">*El
+      email debe
+      contener un @ y un punto</p>
+  </div>
+  <div class="mb-3">
+    <label for="message" class="form-label">Mensaje</label>
+    <input type="text" class="form-control" id="message" aria-describedby="message" formControlName='message'>
+    <p class='pt-3 text-danger'
+      *ngIf="mainForm.get('message')?.touched && mainForm.get('message')?.errors?.['required']">*El mensaje
+      es requerido</p>
+    <p class='pt-3 text-danger'
+      *ngIf="mainForm.get('message')?.touched && mainForm.get('message')?.errors?.['maxLength']">*El
+      mensaje no debe contener mas de 20 caracteres</p>
+  </div>
+  <div class='w-25 m-auto mt-4'>
+    <button type="submit" class="btn btn-primary w-100" [disabled]="!mainForm.valid">Enviar</button>
+  </div>
+</form>
